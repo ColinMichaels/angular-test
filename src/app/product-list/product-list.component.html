@@ -1,14 +1,21 @@
-<h2>Products</h2>
+<h2 class="text-3xl">Products</h2>
 <div *ngFor='let product of products'>
-  <a [title]="product.name + ' details'">
+  <a [title]="product.name + ' details'" [routerLink]="['/products', productId]">
   <h3>{{product.name}}</h3>
+  <img src="https://placeimg.com/640/360/tech" alt="{{product.name}}"/>
   </a>
   <p *ngIf="product.description">
     Description: {{product.description}}
     </p>
-    <button (click)="share()">
+    <div class="flex flex-wrap my-4">
+    <button (click)="share()" class="mr-2 ">
       Share
     </button>
+    <app-product-alerts 
+    [product]="product"
+    (notify)="onNotify()">
+    </app-product-alerts>
+    </div>
 </div>
 
 
